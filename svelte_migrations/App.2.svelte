@@ -3,32 +3,23 @@
 
     let increaseCounter = 0;
     let decreaseCounter = Number.MAX_SAFE_INTEGER;
-    // let content = "";
-
-    let numbers = [];
+    let content = "";
 
     onMount(async () => {
         const interval = setInterval(() => {
             increaseCounter++;
             decreaseCounter--;
-            numbers = [...numbers, increaseCounter, decreaseCounter];
+            content = `increaseCounter=${increaseCounter}, decreaseCounter=${decreaseCounter}`;
         }, 1000);
 
         return () => clearInterval(interval);
     });
-
-    $: {
-        console.log(content)
-    }
-    $: content = `increaseCounter=${increaseCounter}, decreaseCounter=${decreaseCounter}`;
-
 </script>
 
 <main>
     <p>{content}</p>
     <h1>{increaseCounter}</h1>
     <h1>{decreaseCounter}</h1>
-    <p>{numbers}</p>
 </main>
 
 <style>
