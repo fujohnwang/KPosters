@@ -1,5 +1,5 @@
 // import App from './App.svelte';
-import App from './ctx_api_demo/App.svelte';
+import App from './store_demo/App.svelte';
 
 const app = new App({
 	target: document.body,
