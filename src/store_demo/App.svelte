@@ -1,14 +1,29 @@
 <script>
-    import {appGlobal} from './store';
+    import {onDestroy} from 'svelte';
+    import {appGlobal, simplestStore} from './store';
 
     import A from './A.svelte';
     import B from './B.svelte';
+
+    // let tmpValue;
+    // appGlobal.subscribe(value=> {
+    //     tmpValue = value;
+    // })
+    // $: appGlobal.set(tmpValue)
+
+    // let unsubscribe = simplestStore.subscribe(value => {
+    //     tmpValue = value;
+    // })
+    // $: simplestStore.set(tmpValue)
+    // onDestroy(unsubscribe)
+
 </script>
 
 <main>
-    <input bind:value={$appGlobal}/>
+    <input bind:value={$simplestStore}/>
     <A/>
     <B/>
+    {$simplestStore}
 </main>
 
 <style>

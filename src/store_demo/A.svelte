@@ -1,10 +1,11 @@
 <script>
-    import {appGlobal, a} from "./store";
+    import {appGlobal, a, simplestStore} from "./store";
 </script>
 
 <div>
     <h1>Parent Component Store value of A: {$appGlobal}</h1>
     <input bind:value={$a}/>
+    <p>{$simplestStore}</p>
 </div>
 
 <style>
