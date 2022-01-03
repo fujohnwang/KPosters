@@ -19,7 +19,7 @@ function createStore(init) {
         }
     }
     const set = (v) => {
-        if(!(v === internalValue)) {
+        if (!(v === internalValue)) {
             internalValue = v;
             subscribers.forEach(callback => callback(internalValue))
         }
@@ -28,4 +28,28 @@ function createStore(init) {
 }
 
 export let simplestStore = createStore("")
+
+const localStorageBackedStore = (storeName, initValue) => {
+    if (window?.localStorage) {
+        const storedValue = window.localStorage.getItem(storeName)
+        if (storedValue) {
+            initValue = storedValue
+        }
+        const {subscribe, set} = writable(initValue)
+        return {
+            subscribe,
+            set: x => {
+                if (window?.localStorage) {
+                    window.localStorage.setItem(storeName, x)
+                }
+                set(x)
+            }
+        }
+    }
+}
+
+export let longLastStore = localStorageBackedStore("someTextAsKey", "")
+
+
+
 
