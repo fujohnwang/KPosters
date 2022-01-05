@@ -8,8 +8,20 @@
     let content = '';
     let signature = '';
 
-    async function generate() {
-        // ...
+    let generatePromise;
+
+
+    function delay(time) {
+        return new Promise(resolve => setTimeout(resolve, time));
+    }
+
+    function generate() {
+        generatePromise = doGenerate();
+    }
+
+    async function doGenerate() {
+        await delay(4000)
+        console.log("clicked")
     }
 
 </script>
@@ -73,14 +85,17 @@
             </div>
 
             <div class="flex justify-center space-x-4 mt-3 w-full">
-                <button class="w-full inline-flex items-center justify-center p-2 font-black bg-indigo-100">
-                    {#await generate()}
-                        <Spinner/>
-                    {:then value}
-                        {@debug value}
-                    {:catch error}
-                        {@debug error}
-                    {/await}
+                <button class="w-full inline-flex items-center justify-center p-2 font-black bg-indigo-100"
+                        on:click={generate}>
+                    {#if generatePromise}
+                        {#await generatePromise}
+                            <Spinner/>
+                        {:then value}
+                            {@debug value}
+                        {:catch error}
+                            {@debug error}
+                        {/await}
+                    {/if}
                     <span> Generate Poster </span>
                 </button>
             </div>
