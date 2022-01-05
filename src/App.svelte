@@ -1,29 +1,31 @@
 <script>
     import {authenticated} from "./auth";
+    import {delay} from "./util";
     import Spinner from 'svelte-spinner';
     import showdown from 'showdown';
+    import domtoimage from 'dom-to-image';
 
     let converter = new showdown.Converter();
 
     let content = '';
     let signature = '';
 
+    let posterContainerNode;
     let generatePromise;
-
-
-    function delay(time) {
-        return new Promise(resolve => setTimeout(resolve, time));
-    }
 
     function generate() {
         generatePromise = doGenerate();
     }
 
     async function doGenerate() {
-        await delay(4000)
-        console.log("clicked")
+        await domtoimage.toJpeg(posterContainerNode, { quality: 0.95 })
+            .then(function (url) {
+                let link = document.createElement('a');
+                link.download = 'simple_poster_today.jpeg';
+                link.href = url;
+                link.click();
+            });
     }
-
 </script>
 
 <svelte:head>
@@ -104,7 +106,7 @@
         <div class="md:w-1/2 w-full object-cover object-center rounded mt-6">
             <div class="relative">
                 <div class="w-full object-cover mx-auto max-w-md">
-                    <div id="posterContainer">
+                    <div id="posterContainer" bind:this={posterContainerNode}>
                         <div class="shadow-lg mx-auto relative max-w-md group cursor-pointer">
                             <!--                            <div class="absolute ml-4 pr-8 z-10">-->
                             <!--                                <div class="bg-red-600 text-white bg-opacity-95 shadow px-2 py-1 flex items-center font-bold text-xs rounded">poster.keevol.cn</div>-->

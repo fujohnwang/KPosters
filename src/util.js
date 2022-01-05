@@ -4,3 +4,6 @@ export function today() {
     return today.toLocaleDateString()
 }
 
+export function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+}
