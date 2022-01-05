@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "pinyin-pro": "^3.4.1",
-    "sirv-cli": "^1.0.0"
+    "showdown": "^1.9.1",
+    "sirv-cli": "^1.0.0",
+    "svelte-spinner": "^2.0.2"
   }
 }
