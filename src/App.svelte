@@ -1,9 +1,11 @@
 <script>
     import {authenticated} from "./auth";
+    import makeItSnow from "./makeItSnow";
     import {delay} from "./util";
     import Spinner from 'svelte-spinner';
     import showdown from 'showdown';
     import domtoimage from 'dom-to-image';
+    import CustomButton from "./CustomButton.svelte";
 
     let converter = new showdown.Converter();
 
@@ -18,7 +20,7 @@
     }
 
     async function doGenerate() {
-        await domtoimage.toJpeg(posterContainerNode, { quality: 0.95 })
+        await domtoimage.toJpeg(posterContainerNode, {quality: 0.95})
             .then(function (url) {
                 let link = document.createElement('a');
                 link.download = 'simple_poster_today.jpeg';
@@ -26,6 +28,19 @@
                 link.click();
             });
     }
+
+    function logAction(node, params) {
+        console.log(`${node.tagName}: ${params.name} is created`)
+        return {
+            update(params){
+                // params change
+            },
+            destroy() {
+                // do clean up here
+            }
+        };
+    }
+
 </script>
 
 <svelte:head>
@@ -87,8 +102,10 @@
             </div>
 
             <div class="flex justify-center space-x-4 mt-3 w-full">
+                <!--                <CustomButton-->
+                <!--                        on:gen={event=> console.log(`custom event: gen with [data=${event.detail}] receives and needs handling.`)}/>-->
                 <button class="w-full inline-flex items-center justify-center p-2 font-black bg-indigo-100"
-                        on:click={generate}>
+                        on:click={generate} use:makeItSnow use:logAction={{name: 'Generate Poster'}}>
                     {#if generatePromise}
                         {#await generatePromise}
                             <Spinner/>
