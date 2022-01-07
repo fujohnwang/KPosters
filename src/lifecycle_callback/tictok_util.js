@@ -4,17 +4,17 @@ import {writable} from "svelte/store";
 export const tic = writable(0);
 
 export function setUpInterval() {
-    let interval;
+    let intervalHandle;
 
     onMount(async () => {
         console.log("external onMount")
-        interval = setInterval(() => {
+        intervalHandle = setInterval(() => {
             tic.update(c => c + 1)
         }, 1000);
     });
 
     onDestroy(() => {
-        clearInterval(interval);
+        clearInterval(intervalHandle);
         console.log("external onDestroy")
     });
 }
