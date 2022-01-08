@@ -1,10 +1,10 @@
-// import App from './App.svelte';
-import App from './lifecycle_callback/TicTokApp.svelte';
+// import App from './TweenApp.svelte';
+import App from './tweened/TweenApp.svelte';
 
 const app = new App({
 	target: document.body,
 	props: {
-		name: 'world'
+		// name: 'world'
 	}
 });
 

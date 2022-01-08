@@ -1,4 +1,6 @@
 <script>
+    import {fly} from "svelte/transition";
+
     import TicTok from "./TicTok.svelte";
     import TicTok2 from "./TicTok2.svelte";
 
@@ -12,6 +14,7 @@
     </label>
     {#if visible}
         <TicTok/>
+<!--        <TicTok2 transition:fly={{y:100}}/>-->
         <TicTok2/>
     {/if}
 </div>
