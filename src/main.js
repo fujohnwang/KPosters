@@ -1,5 +1,5 @@
 // import App from './TweenApp.svelte';
-import App from './xfade/CrossfadeApp.svelte';
+import App from './router/App.svelte';
 
 const app = new App({
 	target: document.body,
