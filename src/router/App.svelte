@@ -55,7 +55,6 @@
     <div class="flex bg-gray-100 justify-center">
         <div class="p-12 text-center max-w-2xl">
             <Router {routes}/>
-<!--            <Svelte/>-->
         </div>
     </div>
 </main>

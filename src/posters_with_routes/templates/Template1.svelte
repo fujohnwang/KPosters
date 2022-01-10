@@ -1,6 +1,5 @@
 <script>
-    export let content = '';
-    export let signature = '';
+    import {content, signature} from "../store";
 </script>
 
 <div class="shadow-lg mx-auto relative max-w-md group cursor-pointer">
@@ -14,10 +13,10 @@
         <!-- <input type="file" name="insetChooser" bind:files> -->
     </div>
     <div class="p-6 my-auto bg-white">
-        <p class="text-4xl text-black whitespace-pre-wrap">{content}</p>
+        <p class="text-4xl text-black whitespace-pre-wrap">{$content}</p>
     </div>
     <div class="border-t pt-8 pb-8 text-center text-base text-gray-400 uppercase tracking-widest group-hover:text-gray-600 bg-gray-50">
-        <span class="text-xl font-semibold text-gray-500 mt-4">{signature} - t1</span>
+        <span class="text-xl font-semibold text-gray-500 mt-4">{$signature}</span>
         <br/>
         <span class="text-sm font-semibold text-gray-500 mt-4"> {new Date().toLocaleDateString()}</span>
     </div>

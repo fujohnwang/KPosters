@@ -11,6 +11,8 @@
     import Template3 from './templates/Template3.svelte';
     import NF from '../router/NotFound.svelte';
 
+    import {content, signature} from "./store";
+
     let routes = {
         '/': Template1,
         '/t1': Template1,
@@ -21,8 +23,8 @@
 
     let converter = new showdown.Converter();
 
-    let content = '';
-    let signature = '';
+    // let content = '';
+    // let signature = '';
 
     let posterContainerNode;
     let generatePromise;
@@ -103,13 +105,13 @@
                 <div>
                     <label class="mb-3 mt-6 text-indigo-200" for="namer">Enter Poster Content</label>
                     <textarea id="content" name="content" class="p-2 text-2xl w-full text-black border resize-none"
-                              placeholder="enter content here" bind:value={content}></textarea>
+                              placeholder="enter content here" bind:value={$content}></textarea>
                     <!--                    bind:value="{content}" bind:this="{contentNode}" use:adjustHeight-->
 
                     <label class="mb-3 mt-6 text-indigo-200" for="namer">Enter Footer Message</label>
                     <textarea rows="1" class="p-2 w-full text-black border resize-none"
                               placeholder="signature or any footer message"
-                              id="namer" name="namer" bind:value={signature}></textarea>
+                              id="namer" name="namer" bind:value={$signature}></textarea>
                 </div>
             </div>
 
